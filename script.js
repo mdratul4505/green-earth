@@ -57,18 +57,7 @@ const plantsByCategory = (id) =>{
     )
 } 
 
-// 0
-// : 
-// {id: 1, image: 'https://i.ibb.co.com/cSQdg7tf/mango-min.jpg', name: 'Mango Tree', description: 'A fast-growing tropical tree that produces delicio…s sweet fruits are rich in vitamins and minerals.', category: 'Fruit Tree', …}
-// 1
-// : 
-// {id: 2, image: 'https://i.ibb.co.com/WNbbx3rn/guava-min.jpg', name: 'Guava Tree', description: 'A hardy fruit tree that grows in various climates,…ance nature makes it a favorite for home gardens.', category: 'Fruit Tree', …}
-// 2
-// : 
-// {id: 3, image: 'https://i.ibb.co.com/xt98PwZq/jackfruit-min.jpg', name: 'Jackfruit Tree', description: 'A large tropical tree that bears the world’s bigge…ing, and the tree itself provides generous shade.', category: 'Fruit Tree', …}
-// length
-// : 
-// 3
+
 
 const showPlantByCategory = (trees) => {
     plantsCategory.innerHTML = '';
@@ -83,7 +72,7 @@ const showPlantByCategory = (trees) => {
 
   <div class="flex flex-col flex-grow">
     <h2 class="font-semibold mt-2">${tree.name}</h2>
-    <p class="text-[12px] py-2 flex-grow">${tree.description}</p>
+    <p class="text-[12px] py-2 flex-grow">${tree.description.slice(0, 70)}...</p>
 
     <div class="flex justify-between items-center mt-2">
       <button class="btn rounded-[999px] bg-[#DCFCE7] text-[#15803D]">${tree.category}</button>
@@ -101,8 +90,16 @@ const showPlantByCategory = (trees) => {
     
 } 
 
+const loadPlants = ()=>{
+    const url = 'https://openapi.programming-hero.com/api/plants'
+    fetch(url)
+    .then(res => res.json())
+    .then(data => showPlantByCategory(data.plants))
+}
 
-plantsByCategory('01')
+
+// plantsByCategory('01')
+loadPlants()
 loadContainer()
 
 
