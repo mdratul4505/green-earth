@@ -1,5 +1,6 @@
 // add html to js
-const plantCategory = document.getElementById('plantCategory')
+const allPlantCategory = document.getElementById('plantCategory');
+const plantsCategory = document.getElementById('plantsCategory');
 
 
 
@@ -16,17 +17,93 @@ const loadContainer = () =>{
 }
 
 
-
 const displayContainer=(categories)=>{
-    plantCategory.innerHTML = '';
+    allPlantCategory.innerHTML = '';
     categories.forEach(category => {
-        plantCategory.innerHTML +=`
-        <button class="flex items-center hover:bg-[#15803D] w-full py-2">
-                <span id="${category.id}" class="flex-1 text-left px-4">${category.category_name}</span>
-               </button>
+        allPlantCategory.innerHTML +=`
+        <li id="${category.id}"  class="w-full hover:bg-[#15803D] text-left px-4 py-2 m-1">${category.category_name}</li>
         `
     });
 }
 
+allPlantCategory.addEventListener('click', e =>{
+    const allLi = document.querySelectorAll('li')
+    allLi.forEach(li => {
+        li.classList.remove('bg-[#15803D]')
+        
+    });
+    if(e.target.nodeName == 'LI'){
+        
+        e.target.classList.add('bg-[#15803D]')
+        const id = (e.target.id)
+        plantsByCategory(id);
+    }
+})
 
+
+
+
+// plants by category
+const plantsByCategory = (id) =>{
+    const url = `https://openapi.programming-hero.com/api/category/${id}`
+    fetch(url)
+    .then(res => res.json())
+    .then(data => 
+        
+            showPlantByCategory(data.plants)
+
+            
+        
+    )
+} 
+
+// 0
+// : 
+// {id: 1, image: 'https://i.ibb.co.com/cSQdg7tf/mango-min.jpg', name: 'Mango Tree', description: 'A fast-growing tropical tree that produces delicio…s sweet fruits are rich in vitamins and minerals.', category: 'Fruit Tree', …}
+// 1
+// : 
+// {id: 2, image: 'https://i.ibb.co.com/WNbbx3rn/guava-min.jpg', name: 'Guava Tree', description: 'A hardy fruit tree that grows in various climates,…ance nature makes it a favorite for home gardens.', category: 'Fruit Tree', …}
+// 2
+// : 
+// {id: 3, image: 'https://i.ibb.co.com/xt98PwZq/jackfruit-min.jpg', name: 'Jackfruit Tree', description: 'A large tropical tree that bears the world’s bigge…ing, and the tree itself provides generous shade.', category: 'Fruit Tree', …}
+// length
+// : 
+// 3
+
+const showPlantByCategory = (trees) => {
+    plantsCategory.innerHTML = '';
+    trees.forEach(tree => {
+        
+        plantsCategory.innerHTML += `
+        
+    <div class="bg-white flex flex-col h-full p-4 rounded-lg shadow">
+  <div>
+    <img src="${tree.image}" alt="" class="w-full h-40 object-cover rounded-md">
+  </div>
+
+  <div class="flex flex-col flex-grow">
+    <h2 class="font-semibold mt-2">${tree.name}</h2>
+    <p class="text-[12px] py-2 flex-grow">${tree.description}</p>
+
+    <div class="flex justify-between items-center mt-2">
+      <button class="btn rounded-[999px] bg-[#DCFCE7] text-[#15803D]">${tree.category}</button>
+      <h1>${tree.price ? tree.price + " tk" : "N/A"}</h1>
+    </div>
+
+    
+    <button class="w-full btn bg-[#15803D] text-white rounded-[999px] font-medium mt-2">Add to Cart</button>
+  </div>
+</div>   
+        
+        `
+    });
+        
+    
+} 
+
+
+plantsByCategory('01')
 loadContainer()
+
+
+
