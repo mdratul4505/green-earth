@@ -66,7 +66,7 @@ const plantsByCategory = (id) =>{
 const showPlantByCategory = (trees) => {
     plantsCategory.innerHTML = '';
     trees.forEach(tree => {
-        
+       
         plantsCategory.innerHTML += `
         
     <div class="bg-white flex flex-col h-full p-4 rounded-lg shadow">
@@ -94,6 +94,7 @@ const showPlantByCategory = (trees) => {
     
 } 
 
+
 const loadPlants = ()=>{
     const url = 'https://openapi.programming-hero.com/api/plants'
     fetch(url)
@@ -102,10 +103,12 @@ const loadPlants = ()=>{
 }
 
 plantsCategory.addEventListener('click',(e)=>{
-    // console.log(e.target.innerText)
     if(e.target.innerText === 'Add to Cart'){
-        
+        alert('Trees has been added to the card !')
         handelAddCard(e)
+    }
+    if(e.target.innerText === ''){
+
     }
 })
 
@@ -120,6 +123,7 @@ const handelAddCard =(e) =>{
         totalPrice += priceInt;
         updateTotal();
         showAddCard(addCards)
+        
 }
 
 const showAddCard = (cards) =>{
