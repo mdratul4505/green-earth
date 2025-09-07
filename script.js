@@ -84,10 +84,11 @@ const loadTreeDetail = (id)=>{
     const url = `https://openapi.programming-hero.com/api/plant/${id}`
     fetch(url)
     .then(res => res.json())
-    .then(data => showTreeDetail(data.plants))
+    .then(data => showTreeDetail(data.plants , data.category))
 }
 
-const showTreeDetail = (tree)=>{
+const showTreeDetail = (tree , category)=>{
+    console.log(category)
     console.log(tree)
     modal.innerHTML = `
     <div class="space-y-5">
@@ -111,7 +112,7 @@ const showPlantByCategory = (trees) => {
        
         plantsCategory.innerHTML += `
         
-    <div class="bg-white flex flex-col h-full p-4 rounded-lg shadow">
+    <div class="bg-white flex flex-col lg:h-120 p-4 rounded-lg shadow">
   <div>
     <img src="${tree.image}" alt="" class="w-full h-40 object-cover rounded-md">
   </div>
