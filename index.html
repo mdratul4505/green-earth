@@ -51,7 +51,7 @@
 </div>
 
     <!-- banner section -->
-     <section class="grid md:grid-cols-3 bg-[#CFF0DC]">
+     <section class="grid md:grid-cols-3 bg-[#CFF0DC] ">
         <div><img src="./assets/hero-leaf1.png" alt=""></div>
         <div class="mt-20 text-center md:p-2 p-6 ">
             
@@ -130,9 +130,9 @@
     <!-- our impact -->
      <section class="bg-[#CFF0DC] ">
         <div class="w-11/12 mx-auto py-20">
-            <div><h3 class="font-semibold text-3xl text-center mb-5">Our Impact</h3></div>
+            <div><h3 class="font-semibold text-3xl text-center mb-5 ">Our Impact</h3></div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-              <div class="card bg-base-100  shadow-sm">
+              <div class="card bg-base-100  shadow-sm hover:bg-[#c8e4fc]">
   
   <div class="card-body items-center text-center">
     <h2 class="card-title text-[#15803D] font-semibold text-3xl">500K+</h2>
@@ -141,7 +141,7 @@
   </div>
 </div>  
 <!-- card-2 -->
-<div class="card bg-base-100  shadow-sm">
+<div class="card bg-base-100  shadow-sm hover:bg-[#c8e4fc]">
   
   <div class="card-body items-center text-center">
     <h2 class="card-title text-[#15803D] font-semibold text-3xl">120+</h2>
@@ -150,7 +150,7 @@
   </div>
 </div> 
 <!-- card-3 -->
-<div class="card bg-base-100  shadow-sm">
+<div class="card bg-base-100  shadow-sm hover:bg-[#c8e4fc]">
   
   <div class="card-body items-center text-center">
     <h2 class="card-title text-[#15803D] font-semibold text-3xl">30+</h2>
@@ -182,7 +182,7 @@
                 <option>Guava</option>
             </select><br>
 
-        <button class="btn bg-[#FACC15] text-[#15803D] rounded-[999px] w-full mt-4">Get Involved</button>
+        <button class="btn bg-[#FACC15] text-[#15803D] rounded-[999px] w-full mt-4 font-semibold">Donate Now</button>
                 
             </form>
             </div>
@@ -199,11 +199,14 @@
       <!-- card -->
     
       <!-- Open the modal using ID.showModal() method -->
-<button class="btn" onclick="my_modal_1.showModal()">open modal</button>
+<!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
 <dialog id="my_modal_1" class="modal">
   <div class="modal-box">
-    <h3 class="text-lg font-bold">Hello!</h3>
-    <p class="py-4">Press ESC key or click the button below to close</p>
+    
+    <div id="details-container" >
+      
+
+    </div>
     <div class="modal-action">
       <form method="dialog">
         <!-- if there is a button in form, it will close the modal -->
