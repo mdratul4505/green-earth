@@ -2,8 +2,10 @@
 const allPlantCategory = document.getElementById('plantCategory');
 const plantsCategory = document.getElementById('plantsCategory');
 const yourCard = document.getElementById('yourCard');
+const price = document.getElementById('TotalPrice')
 
 let addCards = [];
+let totalPrice = 0;
 
 
 // function
@@ -64,7 +66,7 @@ const plantsByCategory = (id) =>{
 const showPlantByCategory = (trees) => {
     plantsCategory.innerHTML = '';
     trees.forEach(tree => {
-        console.log(tree)
+        
         plantsCategory.innerHTML += `
         
     <div class="bg-white flex flex-col h-full p-4 rounded-lg shadow">
@@ -110,10 +112,13 @@ plantsCategory.addEventListener('click',(e)=>{
 const handelAddCard =(e) =>{
     const name =e.target.parentNode.children[0].innerText
         const price = e.target.parentNode.querySelector('h1').innerText
+        const priceInt = parseInt(price)
         addCards.push({
             name : name,
             price : price
         })
+        totalPrice += priceInt;
+        updateTotal();
         showAddCard(addCards)
 }
 
@@ -136,8 +141,15 @@ const showAddCard = (cards) =>{
 }
 
 const deleteCard = (index) =>{
+    const removedPrice = parseInt(addCards[index].price);
     addCards.splice(index, 1);
+    totalPrice -= removedPrice;
+    updateTotal()
     showAddCard(addCards)
+}
+
+const updateTotal =() =>{
+    price.innerText = totalPrice;
 }
 // plantsByCategory('01')
 loadPlants()
