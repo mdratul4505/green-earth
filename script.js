@@ -1,8 +1,9 @@
 // add html to js
 const allPlantCategory = document.getElementById('plantCategory');
 const plantsCategory = document.getElementById('plantsCategory');
+const yourCard = document.getElementById('yourCard');
 
-
+let addCards = [];
 
 
 // function
@@ -97,6 +98,40 @@ const loadPlants = ()=>{
     .then(data => showPlantByCategory(data.plants))
 }
 
+plantsCategory.addEventListener('click',(e)=>{
+    // console.log(e.target.innerText)
+    if(e.target.innerText === 'Add to Cart'){
+        
+        handelAddCard(e)
+    }
+})
+
+const handelAddCard =(e) =>{
+    const name =e.target.parentNode.children[0].innerText
+        const price = e.target.parentNode.querySelector('h1').innerText
+        addCards.push({
+            name : name,
+            price : price
+        })
+        showAddCard(addCards)
+}
+
+const showAddCard = (cards) =>{
+    yourCard.innerHTML = '';
+    cards.forEach(card => {
+        yourCard.innerHTML +=`
+        <div class="flex justify-between items-center bg-[#F0FDF4] p-2 pl-3 m-3">
+        <div class="">
+          <h2>${card.name}</h2>
+        <p>${card.price}</p>
+        </div>
+        <div>
+          <span><i class="fa-solid fa-xmark"></i></span>
+        </div>
+      </div>
+        `
+    });
+}
 
 // plantsByCategory('01')
 loadPlants()
