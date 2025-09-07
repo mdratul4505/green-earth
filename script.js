@@ -38,6 +38,7 @@ allPlantCategory.addEventListener('click', e =>{
         e.target.classList.add('bg-[#15803D]')
         const id = (e.target.id)
         plantsByCategory(id);
+        
     }
 })
 
@@ -63,7 +64,7 @@ const plantsByCategory = (id) =>{
 const showPlantByCategory = (trees) => {
     plantsCategory.innerHTML = '';
     trees.forEach(tree => {
-        
+        console.log(tree)
         plantsCategory.innerHTML += `
         
     <div class="bg-white flex flex-col h-full p-4 rounded-lg shadow">
@@ -118,7 +119,7 @@ const handelAddCard =(e) =>{
 
 const showAddCard = (cards) =>{
     yourCard.innerHTML = '';
-    cards.forEach(card => {
+    cards.forEach((card , index) => {
         yourCard.innerHTML +=`
         <div class="flex justify-between items-center bg-[#F0FDF4] p-2 pl-3 m-3">
         <div class="">
@@ -126,13 +127,18 @@ const showAddCard = (cards) =>{
         <p>${card.price}</p>
         </div>
         <div>
-          <span><i class="fa-solid fa-xmark"></i></span>
+          <button onclick="deleteCard(${index})" class="cursor-pointer text-red-600 hover:bg-red-300"><i class="fa-solid fa-xmark"></i></button>
         </div>
       </div>
         `
     });
+    
 }
 
+const deleteCard = (index) =>{
+    addCards.splice(index, 1);
+    showAddCard(addCards)
+}
 // plantsByCategory('01')
 loadPlants()
 loadContainer()
