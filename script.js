@@ -36,7 +36,7 @@ allPlantCategory.addEventListener('click', e =>{
         
     });
     if(e.target.nodeName == 'LI'){
-        
+        showLoading()
         e.target.classList.add('bg-[#15803D]')
         const id = (e.target.id)
         plantsByCategory(id);
@@ -62,7 +62,7 @@ const plantsByCategory = (id) =>{
 } 
 
 
-
+// show plant category
 const showPlantByCategory = (trees) => {
     plantsCategory.innerHTML = '';
     trees.forEach(tree => {
@@ -94,7 +94,7 @@ const showPlantByCategory = (trees) => {
     
 } 
 
-
+// plant card load 
 const loadPlants = ()=>{
     const url = 'https://openapi.programming-hero.com/api/plants'
     fetch(url)
@@ -155,7 +155,13 @@ const deleteCard = (index) =>{
 const updateTotal =() =>{
     price.innerText = totalPrice;
 }
-// plantsByCategory('01')
+
+const showLoading= () =>{
+    plantsCategory.innerHTML = `
+    <div class="text-xl font-semibold">loading <span class="loading loading-dots loading-sm"></span></div>
+    `
+}
+
 loadPlants()
 loadContainer()
 
