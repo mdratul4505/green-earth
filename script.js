@@ -112,7 +112,7 @@ const showPlantByCategory = (trees) => {
        
         plantsCategory.innerHTML += `
         
-    <div class="bg-white flex flex-col lg:h-120 p-4 rounded-lg shadow">
+    <div class="bg-white flex flex-col lg:h-100 p-4 rounded-lg shadow">
   <div>
     <img src="${tree.image}" alt="" class="w-full h-40 object-cover rounded-md">
   </div>
@@ -123,7 +123,7 @@ const showPlantByCategory = (trees) => {
 
     <div class="flex justify-between items-center mt-2">
       <button class="btn rounded-[999px] bg-[#DCFCE7] text-[#15803D]">${tree.category}</button>
-      <h1>${ tree.price + " tk" }</h1>
+      <h1 >${ tree.price + "tk" }</h1>
     </div>
 
     
@@ -147,8 +147,9 @@ const loadPlants = ()=>{
 
 plantsCategory.addEventListener('click',(e)=>{
     if(e.target.innerText === 'Add to Cart'){
-        alert('Trees has been added to the card !')
+        alert(` Trees has been added to the card !`)
         handelAddCard(e)
+        
     }
     if(e.target.innerText === ''){
 
